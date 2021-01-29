@@ -1,0 +1,8 @@
+*.sw?
+.eggs
+*.egg-info
+__pycache__
+*.pyc
+*.pyo
+CHANGELOG
+AUTHORS

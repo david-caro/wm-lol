@@ -1,0 +1,35 @@
+<html>
+<h1>Welcome to Wikimedia Lol!</h1>
+
+You can use this app as a search engine to get shortcuts to any of the
+following useful wikimedia related pages:
+<br>
+<br>
+
+<table style="width:100%", border=1>
+  <tr>
+    <th>Matcher name</th>
+    <th>Prefixes</th>
+    <th>Url template</th>
+  </tr>
+
+{% for matcher in matchers %}
+  <tr>
+    <td>{{ matcher.name }}</td>
+    <td>{{ matcher.prefixes }}</td>
+    <td>{{ matcher.url_template }}</td>
+  </tr>
+{% endfor %}
+</table>
+
+
+
+<p>
+To set it up, you can configure the following url as a search engine in your
+browser:
+<br>
+<pre>
+  {{ app_search_url }}
+</pre>
+</p>
+</html>
