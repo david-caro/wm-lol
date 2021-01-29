@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from flask import Blueprint, request, redirect, render_template
 from werkzeug.exceptions import BadRequest
-from commands import get_matchers
+from wm_lol.commands import get_matchers
 
 api = Blueprint("api", __name__)
 
