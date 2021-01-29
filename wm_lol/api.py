@@ -8,7 +8,12 @@ api = Blueprint("api", __name__)
 
 @api.route("/search", methods=["GET"])
 def search():
-    if 'list' in request.args or 'help' in request.args:
+    if (
+        'list' in request.args
+        or 'help' in request.args
+        or request.args.get("query", "") == "list"
+        or request.args.get("query", "") == "help"
+    ):
         matchers = get_matchers()
         return render_template(
             "help.html",

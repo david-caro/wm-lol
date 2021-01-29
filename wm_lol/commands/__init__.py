@@ -76,12 +76,12 @@ def get_matchers() -> List[Matcher]:
         PrefixMatcher(
             name="calendar",
             prefixes=["cal"],
-            url_template="https://calendar.google.com",
+            url_template="https://calendar.google.com/{match}",
         ),
         PrefixMatcher(
             name="horizon",
             prefixes=["h", "horizon"],
-            url_template="https://horizon.wikimedia.org",
+            url_template="https://horizon.wikimedia.org/{match}",
         ),
         PrefixMatcher(
             name="gerrit",
