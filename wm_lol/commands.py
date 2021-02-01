@@ -161,4 +161,24 @@ def get_matchers() -> List[Matcher]:
             prefixes=["dd", "duckduck"],
             url_template="https://duckduckgo.com?q={match}",
         ),
+        PrefixMatcher(
+            name="Debmonitor",
+            prefixes=["dm", "debmonitor"],
+            url_template="https://debmonitor.wikimedia.org/{match}",
+        ),
+        PrefixMatcher(
+            name="Puppetboard",
+            prefixes=["pb", "puppetboard"],
+            url_template="https://puppetboard.wikimedia.org/{match}",
+        ),
+        PrefixMatcher(
+            name="Kudos wiki, show some wikilove :)",
+            prefixes=["kudos"],
+            url_template="https://office.wikimedia.org/wiki/Kudos",
+        ),
+        PrefixMatcher(
+            name="Etherpad",
+            prefixes=["e", "ether", "etherpad"],
+            url_template="https://etherpad.wikimedia.org/{match}",
+        ),
     ]
