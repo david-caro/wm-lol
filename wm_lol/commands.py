@@ -101,6 +101,14 @@ def get_matchers() -> List[Matcher]:
             ),
         ),
         PrefixMatcher(
+            name="Labs grafana",
+            prefixes=["lgraph", "lgraf", "lgrafana"],
+            url_template=(
+                "https://grafana-labs.wikimedia.org/dashboard/new?query="
+                "{match}"
+            ),
+        ),
+        PrefixMatcher(
             name="icinga",
             prefixes=["nagios", "icinga"],
             url_template=(
@@ -180,5 +188,10 @@ def get_matchers() -> List[Matcher]:
             name="Etherpad",
             prefixes=["e", "ether", "etherpad"],
             url_template="https://etherpad.wikimedia.org/{match}",
+        ),
+        PrefixMatcher(
+            name="Contact list for WMF",
+            prefixes=["contacts", "people"],
+            url_template="https://office.wikimedia.org/wiki/Contact_list",
         ),
     ]
