@@ -194,4 +194,9 @@ def get_matchers() -> List[Matcher]:
             prefixes=["contacts", "people"],
             url_template="https://office.wikimedia.org/wiki/Contact_list",
         ),
+        PrefixMatcher(
+            name="Wikimedia code search",
+            prefixes=["cs", "code", "codesearch"],
+            url_template="https://codesearch.wmcloud.org/search/?q={match}",
+        ),
     ]
