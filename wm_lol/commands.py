@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import List
 
 
-@dataclass
+@dataclass(frozen=True)
 class Matcher:
     name: str
 
@@ -18,7 +18,7 @@ class Matcher:
         raise NotImplementedError()
 
 
-@dataclass
+@dataclass(frozen=True)
 class PrefixMatcher(Matcher):
     prefixes: List[str]
     url_template: str
