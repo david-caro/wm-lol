@@ -84,6 +84,11 @@ def get_matchers() -> List[Matcher]:
             url_template="https://horizon.wikimedia.org/{match}",
         ),
         PrefixMatcher(
+            name="horizon project",
+            prefixes=["hp"],
+            url_template="https://horizon.wikimedia.org/project/{match}",
+        ),
+        PrefixMatcher(
             name="gerrit",
             prefixes=["gerrit"],
             url_template="https://gerrit.wikimedia.org/r/q/{match}",
@@ -198,5 +203,10 @@ def get_matchers() -> List[Matcher]:
             name="Wikimedia code search",
             prefixes=["cs", "code", "codesearch"],
             url_template="https://codesearch.wmcloud.org/search/?q={match}",
+        ),
+        PrefixMatcher(
+            name="Betterworks",
+            prefixes=["bw", "betterworks"],
+            url_template="https://app.betterworks.com",
         ),
     ]
