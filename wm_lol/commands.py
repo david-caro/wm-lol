@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import re
 from abc import abstractmethod
 from flask import redirect
 from urllib.parse import quote
@@ -43,6 +44,37 @@ class PrefixMatcher(Matcher):
     def __str__(self) -> str:
         return (
             f"{self.name}: prefixes={self.prefixes}, "
+            f"url_template={self.url_template}"
+        )
+
+
+@dataclass(frozen=True)
+class RegexMatcher(Matcher):
+    regexes: List[str]
+    url_template: str
+
+    def match(self, query: str) -> bool:
+        for regex in self.regexes:
+            if re.search(regex, query):
+                return True
+
+        return False
+
+    def run(self, query: str):
+        for regex in self.regexes:
+            match = re.search(regex, query)
+            if match:
+                params = match.groupdict()
+                break
+
+        return redirect(
+            self.url_template.format(**params),
+            code=302,
+        )
+
+    def __str__(self) -> str:
+        return (
+            f"{self.name}: regexes={self.regexes}, "
             f"url_template={self.url_template}"
         )
 
@@ -208,5 +240,10 @@ def get_matchers() -> List[Matcher]:
             name="Betterworks",
             prefixes=["bw", "betterworks"],
             url_template="https://app.betterworks.com",
+        ),
+        RegexMatcher(
+            name="Phabricator regex",
+            regexes=[r"^(?P<task_num>T\d+)$"],
+            url_template="https://phabricator.wikimedia.org/{task_num}",
         ),
     ]

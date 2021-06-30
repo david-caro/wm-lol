@@ -9,7 +9,7 @@ following useful wikimedia related pages:
 <table style="width:100%", border=1>
   <tr>
     <th>Matcher name</th>
-    <th>Prefixes</th>
+    <th>Prefixes/regexes</th>
     <th>Url template</th>
   </tr>
   <tr>
@@ -21,7 +21,7 @@ following useful wikimedia related pages:
 {% for matcher in matchers %}
   <tr>
     <td>{{ matcher.name }}</td>
-    <td>{{ matcher.prefixes }}</td>
+    <td>{{ matcher.prefixes }}{{  matcher.regexes }}</td>
     <td>{{ matcher.url_template }}</td>
   </tr>
 {% endfor %}
