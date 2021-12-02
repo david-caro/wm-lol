@@ -1,2 +1,2 @@
 # To make the internal builder work
-type: uwsgi
+type: python3.7
