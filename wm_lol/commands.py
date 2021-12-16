@@ -221,4 +221,14 @@ def get_matchers() -> List[Matcher]:
             regexes=[r"^(?P<task_num>T\d+)$"],
             url_template="https://phabricator.wikimedia.org/{task_num}",
         ),
+        PrefixMatcher(
+            name="Wikimedia what - prefix",
+            prefixes=["what"],
+            url_template="https://wm-what.toolforge.org/search?term_name={match}",
+        ),
+        RegexMatcher(
+            name="Wikimedia what - regex",
+            regexes=[r"^(?P<query>\?.*)$"],
+            url_template="https://wm-what.toolforge.org/search?term_name={query}",
+        ),
     ]
