@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 import re
 from abc import abstractmethod
-from flask import redirect
-from urllib.parse import quote
 from dataclasses import dataclass
 from typing import List
+from urllib.parse import quote
+
+from flask import redirect
 
 
 @dataclass(frozen=True)
@@ -42,10 +43,7 @@ class PrefixMatcher(Matcher):
         )
 
     def __str__(self) -> str:
-        return (
-            f"{self.name}: prefixes={self.prefixes}, "
-            f"url_template={self.url_template}"
-        )
+        return f"{self.name}: prefixes={self.prefixes}, url_template={self.url_template}"
 
 
 @dataclass(frozen=True)
@@ -73,10 +71,7 @@ class RegexMatcher(Matcher):
         )
 
     def __str__(self) -> str:
-        return (
-            f"{self.name}: regexes={self.regexes}, "
-            f"url_template={self.url_template}"
-        )
+        return f"{self.name}: regexes={self.regexes}, url_template={self.url_template}"
 
 
 def get_matchers() -> List[Matcher]:
@@ -84,16 +79,12 @@ def get_matchers() -> List[Matcher]:
         PrefixMatcher(
             name="Wikimedia office",
             prefixes=["wo"],
-            url_template=(
-                "https://office.wikimedia.org/w/index.php?search={match}"
-            ),
+            url_template=("https://office.wikimedia.org/w/index.php?search={match}"),
         ),
         PrefixMatcher(
             name="Wikitech",
             prefixes=["wt"],
-            url_template=(
-                "https://wikitech.wikimedia.org/w/index.php?search={match}"
-            ),
+            url_template=("https://wikitech.wikimedia.org/w/index.php?search={match}"),
         ),
         PrefixMatcher(
             name="Phabricator",
@@ -133,25 +124,17 @@ def get_matchers() -> List[Matcher]:
         PrefixMatcher(
             name="rw graphana",
             prefixes=["graph", "graf", "grafana"],
-            url_template=(
-                "https://grafana-rw.wikimedia.org/dashboard/new?query={match}"
-            ),
+            url_template="https://grafana-rw.wikimedia.org/dashboard/new?query={match}",
         ),
         PrefixMatcher(
             name="Labs grafana",
             prefixes=["lgraph", "lgraf", "lgrafana"],
-            url_template=(
-                "https://grafana-labs.wikimedia.org/dashboard/new?query="
-                "{match}"
-            ),
+            url_template="https://grafana-labs.wikimedia.org/dashboard/new?query={match}",
         ),
         PrefixMatcher(
             name="icinga",
             prefixes=["nagios", "icinga"],
-            url_template=(
-                "https://icinga.wikimedia.org/cgi-bin/icinga/status.cgi"
-                "?search_string={match}"
-            ),
+            url_template="https://icinga.wikimedia.org/cgi-bin/icinga/status.cgi?search_string={match}",
         ),
         PrefixMatcher(
             name="SAL",
@@ -171,30 +154,22 @@ def get_matchers() -> List[Matcher]:
         PrefixMatcher(
             name="openstack browser - projects",
             prefixes=["obp", "openstack-browser-project"],
-            url_template=(
-                "https://openstack-browser.toolforge.org/project/{match}"
-            ),
+            url_template="https://openstack-browser.toolforge.org/project/{match}",
         ),
         PrefixMatcher(
             name="openstack browser - servers",
             prefixes=["obs", "openstack-browser-server"],
-            url_template=(
-                "https://openstack-browser.toolforge.org/server/{match}"
-            ),
+            url_template="https://openstack-browser.toolforge.org/server/{match}",
         ),
         PrefixMatcher(
             name="Meta wiki",
             prefixes=["meta"],
-            url_template=(
-                "https://meta.wikimedia.org/w/index.php?search={match}"
-            ),
+            url_template="https://meta.wikimedia.org/w/index.php?search={match}",
         ),
         PrefixMatcher(
             name="Mailman lists",
             prefixes=["lists"],
-            url_template=(
-                "https://lists.wikimedia.org/mailman/listinfo/{match}"
-            ),
+            url_template="https://lists.wikimedia.org/mailman/listinfo/{match}",
         ),
         PrefixMatcher(
             name="google",
