@@ -184,7 +184,7 @@ def get_matchers() -> List[Matcher]:
         PrefixMatcher(
             name="Debmonitor",
             prefixes=["dm", "debmonitor"],
-            url_template="https://debmonitor.wikimedia.org/{match}",
+            url_template="https://debmonitor.wikimedia.org/search?q={match}",
         ),
         PrefixMatcher(
             name="Puppetboard",
