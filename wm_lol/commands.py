@@ -132,7 +132,17 @@ def get_matchers() -> List[Matcher]:
             url_template="https://grafana-labs.wikimedia.org/dashboard/new?query={match}",
         ),
         PrefixMatcher(
-            name="icinga",
+            name="alert manager",
+            prefixes=["am"],
+            url_template="https://alerts.wikimedia.org/?q={match}",
+        ),
+        PrefixMatcher(
+            name="cloud VPS alert manager",
+            prefixes=["amvps"],
+            url_template="https://prometheus-alerts.wmcloud.org/?q={match}",
+        ),
+        PrefixMatcher(
+            name="icinga (deprecated, use alertmanager instead)",
             prefixes=["nagios", "icinga"],
             url_template="https://icinga.wikimedia.org/cgi-bin/icinga/status.cgi?search_string={match}",
         ),
