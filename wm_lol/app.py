@@ -24,8 +24,8 @@ dictConfig(
         "root": {"level": "DEBUG", "handlers": ["wsgi"]},
     }
 )
-app = create_app()
+application = create_app()
 
 if __name__ == "__main__":
 
-    app.run()
+    application.run()

@@ -1,8 +1,2 @@
 [tool.isort]
 profile="black"
-
-[[build.buildpacks]]
-uri = "paketo-buildpacks/python"
-
-[[build.buildpacks]]
-uri = "paketo-buildpacks/ruby"
