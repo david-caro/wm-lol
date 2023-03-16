@@ -1,1 +1,1 @@
-web: uwsgi uwsgi.ini
+web: env HOME=/workspaces/source uwsgi uwsgi.ini
