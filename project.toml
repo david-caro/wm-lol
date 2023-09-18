@@ -1,2 +1,11 @@
 [tool.isort]
 profile="black"
+
+[[io.buildpacks.group]]
+id = "io.buildpacks/python"
+version = "1.0"
+
+[[io.buildpacks.group]]
+id = "io.buildpacks/nodejs"
+version = "1.0"
+
