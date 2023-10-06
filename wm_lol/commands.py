@@ -241,4 +241,9 @@ def get_matchers() -> List[Matcher]:
             regexes=[r"^(?P<query>\?.*)$"],
             url_template="https://wm-what.toolforge.org/search?term_name={query}",
         ),
+        PrefixMatcher(
+            name="Cloud open MRs",
+            prefixes=["mrs"],
+            url_template="https://gitlab.wikimedia.org/groups/repos/cloud/-/merge_requests?scope=all&state=opened&label_name[]=Needs%20review",
+        ),
     ]
