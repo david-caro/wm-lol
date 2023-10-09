@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import re
 from abc import abstractmethod
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import List
 from urllib.parse import quote
 
@@ -39,6 +39,39 @@ class PrefixMatcher(Matcher):
 
         return redirect(
             self.url_template.format(match=quote(rest)),
+            code=302,
+        )
+
+    def __str__(self) -> str:
+        return f"{self.name}: prefixes={self.prefixes}, url_template={self.url_template}"
+
+
+@dataclass(frozen=True)
+class PrefixKeyValueMatcher(Matcher):
+    prefixes: List[str]
+    url_template: str
+    extra_keyvals: list[str] = field(default_factory=list)
+
+    def match(self, query: str) -> bool:
+        for prefix in self.prefixes:
+            if query.startswith(f"{prefix} ") or query == prefix:
+                return True
+
+        return False
+
+    def run(self, query: str):
+        queries = [
+            f"q={quote(key_val)}"
+            for key_val in query.split(" ", 1)[-1:] + self.extra_keyvals
+        ]
+
+        if queries:
+            full_query = "?" + "&".join(queries)
+        else:
+            full_query = ""
+
+        return redirect(
+            self.url_template.format(match=quote(full_query)),
             code=302,
         )
 
@@ -131,15 +164,16 @@ def get_matchers() -> List[Matcher]:
             prefixes=["lgraph", "lgraf", "lgrafana"],
             url_template="https://grafana-labs.wikimedia.org/dashboard/new?query={match}",
         ),
-        PrefixMatcher(
+        PrefixKeyValueMatcher(
             name="alert manager",
             prefixes=["am"],
-            url_template="https://alerts.wikimedia.org/?q={match}",
+            url_template="https://alerts.wikimedia.org/{match}",
         ),
-        PrefixMatcher(
-            name="cloud VPS alert manager",
+        PrefixKeyValueMatcher(
+            name="Cloud VPS alert manager",
             prefixes=["amvps"],
-            url_template="https://prometheus-alerts.wmcloud.org/?q={match}",
+            url_template="https://prometheus-alerts.wmcloud.org/{match}",
+            extra_keyvals=["team=wmcs"],
         ),
         PrefixMatcher(
             name="icinga (deprecated, use alertmanager instead)",
@@ -245,5 +279,11 @@ def get_matchers() -> List[Matcher]:
             name="Cloud open MRs",
             prefixes=["mrs"],
             url_template="https://gitlab.wikimedia.org/groups/repos/cloud/-/merge_requests?scope=all&state=opened&label_name[]=Needs%20review",
+        ),
+        PrefixKeyValueMatcher(
+            name="WMCS alerts",
+            prefixes=["wmcsam"],
+            url_template="https://alerts.wikimedia.org/{match}",
+            extra_keyvals=["team=wmcs"]
         ),
     ]
