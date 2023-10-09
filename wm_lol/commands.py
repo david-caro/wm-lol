@@ -286,4 +286,9 @@ def get_matchers() -> List[Matcher]:
             url_template="https://alerts.wikimedia.org/{match}",
             extra_keyvals=["team=wmcs"]
         ),
+        PrefixMatcher(
+            name="Wikimedia librenms web",
+            prefixes=["net", "librenms"],
+            url_template="https://librenms.wikimedia.org",
+        ),
     ]
