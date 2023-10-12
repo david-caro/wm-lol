@@ -291,4 +291,14 @@ def get_matchers() -> List[Matcher]:
             prefixes=["net", "librenms"],
             url_template="https://librenms.wikimedia.org",
         ),
+        PrefixMatcher(
+            name="Wikimedia url shortener",
+            prefixes=["urlshortener", "urlshort"],
+            url_template="https://meta.wikimedia.org/wiki/Special:UrlShortener",
+        ),
+        PrefixMatcher(
+            name="Phabricator link generator",
+            prefixes=["phablink", "phabulous"],
+            url_template="https://phabulous.toolforge.org/",
+        ),
     ]
