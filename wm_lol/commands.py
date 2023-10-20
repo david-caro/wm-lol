@@ -278,7 +278,7 @@ def get_matchers() -> List[Matcher]:
         PrefixMatcher(
             name="Cloud open MRs",
             prefixes=["mrs"],
-            url_template="https://gitlab.wikimedia.org/groups/repos/cloud/-/merge_requests?scope=all&state=opened&label_name[]=Needs%20review",
+            url_template="https://gitlab.wikimedia.org/groups/repos/cloud/-/merge_requests?scope=all&state=opened&label_name[]=Needs%20review&approved_by_usernames[]=None",
         ),
         PrefixKeyValueMatcher(
             name="WMCS alerts",
