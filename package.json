@@ -4,5 +4,8 @@
   "dependencies": {
     "express": "expressjs/express",
     "mocha": "mochajs/mocha#4727d357ea"
+  },
+  "scripts": {
+      "build": "ls -la $CNB_BUILD_PLATFORM/env; env"
   }
 }
